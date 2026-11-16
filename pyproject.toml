@@ -1,0 +1,62 @@
+[project]
+name = "simulacro"
+version = "0.1.0"
+description = "Carnet de conducir para agentes de IA: una empresa gemela donde se prueban, atacan y certifican agentes conectados por MCP."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+simulacro = "simulacro.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.9.9,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "ruff>=0.17.5",
+]
+
+# ---------------------------------------------------------------------------
+# Ruff: formato y lint
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle (errores)
+    "W",   # pycodestyle (avisos)
+    "F",   # pyflakes
+    "I",   # orden de imports
+    "N",   # nombres PEP 8
+    "UP",  # sintaxis moderna de Python
+    "B",   # bugs habituales
+    "SIM", # simplificaciones
+    "C4",  # comprensiones
+    "RUF", # reglas propias de ruff
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+# ---------------------------------------------------------------------------
+# Mypy: tipos estrictos
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.12"
+strict = true
+mypy_path = "src"
+files = ["src", "tests"]
+
+# ---------------------------------------------------------------------------
+# Pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"

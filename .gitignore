@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+
+# Herramientas
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secretos y entorno local
+.env
+.env.*
+!.env.example
+
+# Claude Code: configuración personal y credenciales
+.claude/settings.local.json
+.claude/*.local.*
+
+# Resultados de evals pesados (se versionan solo los resúmenes)
+evals/results/*
+!evals/results/.gitkeep
+
+# Bases de datos locales
+*.sqlite
+*.db
+
+# Sistema
+.DS_Store
+Thumbs.db
